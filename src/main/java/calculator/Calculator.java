@@ -11,9 +11,26 @@ public class Calculator {
 
         if (input.startsWith("//")) {
             int index = input.indexOf("\\n");
+
+            if (index == -1) {
+                throw new IllegalArgumentException("잘못된 커스텀 구분자 형식입니다. '\\n'이 필요합니다.");
+            }
+
             delimiter = input.substring(2, index);
             numbers = input.substring(index + 2);
         }
+
+        else {
+            if (!numbers.matches("^[0-9,:]+$")) {
+                throw new IllegalArgumentException("잘못된 커스텀 구분자 형식입니다. 기본 구분자(, :) 외의 문자가 포함되어 있습니다.");
+            }
+
+            if (numbers.startsWith(",") || numbers.startsWith(":") ||
+                    numbers.endsWith(",") || numbers.endsWith(":")) {
+                throw new IllegalArgumentException("잘못된 구분자 형식입니다. 입력이 구분자로 시작하거나 끝날 수 없습니다.");
+            }
+        }
+
         String[] tokens = numbers.split(delimiter);
         int sum = 0;
 

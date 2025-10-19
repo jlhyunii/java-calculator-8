@@ -10,6 +10,7 @@ public class Application {
         try {
             Calculator calculator = new Calculator();
             int result = calculator.add(input);
+
             System.out.println("결과 : " + result);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
