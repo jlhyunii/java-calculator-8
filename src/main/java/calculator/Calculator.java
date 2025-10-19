@@ -18,7 +18,13 @@ public class Calculator {
         int sum = 0;
 
         for (String token : tokens) {
-            sum += Integer.parseInt(token);
+            int number = Integer.parseInt(token);
+
+            if (number < 0) {
+                throw new IllegalArgumentException("음수는 허용되지 않습니다 : " + number);
+            }
+
+            sum += number;
         }
 
         return sum;
