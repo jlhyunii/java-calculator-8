@@ -18,6 +18,10 @@ public class Calculator {
         int sum = 0;
 
         for (String token : tokens) {
+            if (!token.matches("-?\\d+")) {
+                throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다 : " + token);
+            }
+
             int number = Integer.parseInt(token);
 
             if (number < 0) {
