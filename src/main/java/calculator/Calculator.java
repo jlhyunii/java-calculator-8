@@ -6,11 +6,19 @@ public class Calculator {
             return 0;
         }
 
-        String[] numbers = input.split("[,:]");
+        String delimiter = "[,:]";
+        String numbers = input;
+
+        if (input.startsWith("//")) {
+            int index = input.indexOf("\\n");
+            delimiter = input.substring(2, index);
+            numbers = input.substring(index + 2);
+        }
+        String[] tokens = numbers.split(delimiter);
         int sum = 0;
 
-        for (String number : numbers) {
-            sum += Integer.parseInt(number);
+        for (String token : tokens) {
+            sum += Integer.parseInt(token);
         }
 
         return sum;
